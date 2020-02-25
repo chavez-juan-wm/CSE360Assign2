@@ -12,6 +12,9 @@
 
 package cse360assign2;
 
+import java.util.Arrays;
+import java.lang.Math;
+
 public class SimpleList 
 {
 	private int list[];
@@ -33,8 +36,14 @@ public class SimpleList
 	 */
 	public void add(int newElement) 
 	{
-		if(count < 10)
-			count++;
+		// The list is full so increase the array by 50%
+		if(count == list.length){
+			int newLength = (int) Math.floor(list.length * 1.5);
+			
+			list = Arrays.copyOf(list, newLength);
+		}
+		
+		count++;
 		
 		// Shifts previous elements to the right
 		for(int size = (count-1); size > 0; size--) 
@@ -59,6 +68,15 @@ public class SimpleList
 		}
 		
 		count--;
+		
+		// If the list has more than 25% empty places, then decrease the size of the list by 25% of its size
+		double percentOfEmptySpaces = 1.0 - ((double) count / (double)list.length);
+		
+		if(percentOfEmptySpaces > .25) {
+			int newLength = list.length - (int) Math.floor(list.length * .25);
+			
+			list = Arrays.copyOf(list, newLength);
+		}
 	}
 	
 	/**
@@ -106,5 +124,5 @@ public class SimpleList
 		}
 		
 		return indexFound;
-	}
+	}	
 }
