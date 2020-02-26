@@ -1,12 +1,12 @@
 /**
  *	The SimpleList class is a small program for storing
- *	up to 10 integers in a list. Methods include adding, 
- *	removing, and displaying the list.
+ *	integers in a list. Methods include adding, 
+ *	removing, displaying the list, etc.
  * 
  *  @author  Juan M Chavez Garcia
  *  Class ID: 177
- * 	Assignment #1
- * 	@version 1.0
+ * 	Assignment #2
+ * 	@version 2.0
  * 
  */
 
@@ -124,5 +124,41 @@ public class SimpleList
 		}
 		
 		return indexFound;
-	}	
+	}
+	
+	/**
+	 * Adds an element to the end of the list
+	 * 
+	 * @param newElement	The value of the new element to be added
+	 */
+	public void append(int newElement) {
+		// The list is full so increase the array by 50%
+		if(count == list.length){
+			int newLength = (int) Math.floor(list.length * 1.5);
+			
+			list = Arrays.copyOf(list, newLength);
+		}
+		
+		count++;
+		
+		list[count] = newElement;
+	}
+	
+	/**
+	 * Returns the first element of the list
+	 * 
+	 * @return the value of the first element
+	 */
+	public int first() {
+		return list[0];
+	}
+	
+	/**
+	 * Returns the size of empty spaces on the array
+	 * 
+	 * @return the number of possible locations on the list
+	 */
+	public int size() {
+		return list.length - count;
+	}
 }
