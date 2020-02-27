@@ -139,9 +139,8 @@ public class SimpleList
 			list = Arrays.copyOf(list, newLength);
 		}
 		
-		count++;
-		
 		list[count] = newElement;
+		count++;
 	}
 	
 	/**
@@ -150,7 +149,22 @@ public class SimpleList
 	 * @return the value of the first element
 	 */
 	public int first() {
-		return list[0];
+		if(count == 0)
+			return -1;
+		else
+			return list[0];
+	}
+	
+	/**
+	 * Returns the last element of the list
+	 * 
+	 * @return the value of the last element
+	 */
+	public int last() {
+		if(count == 0)
+			return -1;
+		else
+			return list[count-1];
 	}
 	
 	/**
